@@ -1,0 +1,70 @@
+{% load i18n %}
+{% load sekizai_tags %}
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>{{ site.name }}</title>
+  <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  {% render_block "css" %}
+   <script type="text/javascript" src="{{ STATIC_URL }}contrib/ICanHaz.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}contrib/jquery.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"></script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}contrib/json2.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}contrib/underscore.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}contrib/backbone.js"></script>
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="{% url 'home' %}">{{ site.name }}</a>
+            <ul class="nav">
+                <li class="active"><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+            </ul>
+
+            <ul class="nav pull-right">
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    {% block container %}
+        <div class="content">
+            <br />
+            <br />
+            {% block content %}
+            <div class="page-header">
+                <h1>{{ site.name }} <small>{% trans "Sample using Bootstrap from Twitter with django-registration" %}</small></h1>
+            </div>
+            <ul>
+            </ul>
+
+            <p>Django project that can be used as a foundation for other projects.
+            Includes the following:
+            </p>
+            <ul>
+                <li>Twitter Bootstrap integration</li>
+                <li>User authentication pre-configured</li>
+            </ul>
+
+            <h2>Notes</h2>
+            <p>The 'simple' registration backend is used - this doesn't require
+            users to confirm their email addresses before using the service.
+            The 'default' registration backend will enforce this and can
+            be used by including urls from the 'default' backend in urls.py.</p>
+
+            {% endblock %}
+         </div>
+    {% endblock %}
+    <footer>
+        <p>&copy; <a href='http://{{ site.domain }}'>{{ site.name }}</a> 2011-{% now "Y" %}</p>
+    </footer>
+</div>
+    {% render_block "js" %}
+</body>
+</html>

@@ -9,10 +9,14 @@ xversion.registe_models()
 
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^todos/', include('apps.todos.urls')),
+    url(r'^api/1.0/', include('apps.api.urls')),
+    url(r'^restframework', include('djangorestframework.urls', namespace='djangorestframework')),
+    url(r'^$', 'we.views.home', name='home'),
     # Examples:
     # url(r'^$', 'we.views.home', name='home'),
     # url(r'^we/', include('we.foo.urls')),
@@ -21,7 +25,7 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'xadmin/', include(xadmin.site.urls)),
 
 
